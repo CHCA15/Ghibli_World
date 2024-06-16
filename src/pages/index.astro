@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+---
+
+<Layout title="Welcome to Astro.">
+	<main>
+		<nav class="navbar">
+			<ul class="items">
+				<li class="item"><a href="#">Inicio</a></li>
+				<li class="item"><a href="#">Peliculas</a></li>
+				<li class="item"><a href="#">Personajes</a></li>
+				<li class="item"><a href="#">Especies</a></li>
+				<li class="item"><a href="#">Lugares</a></li>
+			</ul>
+		</nav>
+	</main>
+</Layout>
+
+<style>
+	main {
+		margin: auto;
+		padding: 1rem;
+		width: 800px;
+		max-width: calc(100% - 2rem);
+		color: white;
+		font-size: 20px;
+		line-height: 1.6;
+	}
+</style>
