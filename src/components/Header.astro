@@ -1,0 +1,80 @@
+<header class="header">
+    <div class="logo">
+        <a href="#">GHIBLI_WORLD</a>
+    </div>
+    <nav class="navbar">
+        <ul class="items">
+            <li class="item"><a href="#">Inicio</a></li>
+            <li class="item"><a href="#">Peliculas</a></li>
+            <li class="item"><a href="#">Personajes</a></li>
+            <li class="item"><a href="#">Especies</a></li>
+            <li class="item"><a href="#">Lugares</a></li>
+        </ul>
+
+        <div class="closeButton">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="size-6"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"
+                ></path>
+            </svg>
+        </div>
+    </nav>
+    
+</header>
+
+<style>
+    :root {
+        --pr-color: white;
+    }
+
+    a {
+        text-decoration: none;
+        color: var(--pr-color);
+    }
+
+    header {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .logo {
+        font-size: 2rem;
+        font-weight: bold;
+        border: 1px solid white;
+        box-shadow: 5px 3px 5px white;
+        padding: 0 10px;
+    }
+
+    .navbar{
+        display: flex;
+        align-items:center ;
+    }
+
+    .navbar .items{
+        display: flex;
+        list-style: none;
+        padding: 0 10px;
+    }
+
+    .navbar ul li{
+        font-size: 1.3rem;
+        padding: 0 10px;
+    }
+
+    .closeButton {
+        color: white;
+        width: 40px;
+        height: 40px;
+        display: none;
+    }
+</style>

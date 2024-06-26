@@ -1,40 +1,23 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Card from "../components/Card.astro";
 ---
 
 <Layout title="Welcome to Astro.">
 	<main>
-		<header class="header">
-			<div class="logo">
-				<a href="#">GHIBLI_WORLD</a>
+		<div class="inicio">
+			<div class="info">
+				<strong class="title">Descubre el mundo ghibli</strong>
+				<p>
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
+					necessitatibus maiores sequi esse nemo, nam eius dignissimos
+					vero delectus eum! Veritatis, deserunt. Error, id a.
+				</p>
 			</div>
-			<nav class="navbar">
-				<ul class="items">
-					<li class="item"><a href="#">Inicio</a></li>
-					<li class="item"><a href="#">Peliculas</a></li>
-					<li class="item"><a href="#">Personajes</a></li>
-					<li class="item"><a href="#">Especies</a></li>
-					<li class="item"><a href="#">Lugares</a></li>
-				</ul>
-			</nav>
-			<div class="closeButton">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke-width="1.5"
-					stroke="currentColor"
-					class="size-6"
-				>
-					<path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"
-					></path>
-				</svg>	
+
+			<div class="imagen">
+				<img src="../../public/media/castle.png" alt="personajes">
 			</div>
-		</header>
+		</div>
 	</main>
 </Layout>
 
@@ -42,10 +25,62 @@ import Card from "../components/Card.astro";
 	main {
 		margin: auto;
 		padding: 1rem;
-		width: 800px;
+		width: 80%;
 		max-width: calc(100% - 2rem);
 		color: white;
 		font-size: 20px;
 		line-height: 1.6;
+	}
+
+
+	/* INICIO */
+
+	.inicio{
+		max-width: 100%;
+		height: 80vh;
+		display: flex;
+		align-items: center;
+	}
+
+	.inicio .info {
+		max-width: 700px;
+		
+	}
+
+	.info .title{
+		font-size: 2.5rem;
+		text-transform: uppercase;
+	}
+
+
+	.inicio .imagen{
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.inicio .imagen img{
+		position: absolute;
+		left: 100px;
+		width: 700px;
+		height: 700px;
+	}
+
+	.inicio .imagen img:hover{
+		cursor: pointer;
+		animation: mov 3.5s ease-out infinite;
+	}
+
+	@keyframes mov {
+		0%{
+			transform: translate(0, 0);
+		}
+		25%{
+			transform: translate(20px, -10px);
+		}
+		100%{
+			transform: translate(0,0);
+		}
 	}
 </style>
