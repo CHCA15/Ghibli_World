@@ -19,12 +19,15 @@ const { title } = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body>
-		<Header/>
+		<Header />
 		<slot />
 	</body>
 </html>
 <style is:global>
 	:root {
+		--text-sec:1rem;
+		--text-pri: 1.6rem;
+		--title:2rem;
 		--accent: 136, 58, 234;
 		--accent-light: 224, 204, 250;
 		--accent-dark: 49, 10, 101;

@@ -27,8 +27,10 @@
                 ></path>
             </svg>
         </div>
+
+        <div class="backLi" id="backLi"></div>
     </nav>
-    
+
 </header>
 
 <style>
@@ -42,9 +44,30 @@
     }
 
     header {
+        position: fixed;
+        top: 0;    
+        left: 0;
+        height: 50px;
+        width: 100vw;
         display: flex;
-        align-items: center;
         justify-content: space-around;
+        backdrop-filter: blur(3px);
+        z-index: 10;
+        text-transform: uppercase;
+        padding: 20px 0;
+        font-size: var(--text-sec);
+        animation: header_animated auto linear both ;
+        animation-timeline: scroll(root);
+        animation-range: 0 300px; 
+    }
+
+    @keyframes header_animated {
+        to{
+            background-color: rgba(65, 78, 73, 0.151);
+            backdrop-filter: blur(8px);
+            font-size: 1.2rem;
+            color: black;
+        }
     }
 
     .logo {
@@ -55,20 +78,22 @@
         padding: 0 10px;
     }
 
-    .navbar{
+    .navbar {
         display: flex;
-        align-items:center ;
+        justify-content: center;
+        align-items: center;
     }
 
-    .navbar .items{
-        display: flex;
+    .navbar .items {
         list-style: none;
-        padding: 0 10px;
+        display: flex;
+        margin: 0;
+        padding: 0;
     }
 
-    .navbar ul li{
-        font-size: 1.3rem;
-        padding: 0 10px;
+    .navbar .items .item a{
+        display: inline-block;
+        padding: 5px 30px;
     }
 
     .closeButton {
@@ -77,4 +102,36 @@
         height: 40px;
         display: none;
     }
+
+    .navbar .backLi {
+        position: absolute;
+        right: var(--top);
+        left: var(--left);
+        width: var(--width);
+        height: var(--height);  
+        z-index: -7;
+        background-color: rgba(22, 145, 73, 0.349);
+        transition: all .2s ease-in-out;
+        border-radius: 3px;
+    }
 </style>
+
+<script>
+    const backLi = document.getElementById(`backLi`);
+    const items = document.querySelectorAll(`.items .item a`);
+
+    items.forEach((item) => {
+        item.addEventListener("mouseenter", (e) => {
+            let {width, height, left, right} = e.target.getBoundingClientRect();
+            backLi.style.setProperty(`--top`,`${right}px`);
+            backLi.style.setProperty(`--left`, `${left}px`);
+            backLi.style.setProperty(`--width`, `${width}px`);
+            backLi.style.setProperty(`--height`, `${height}px`);
+            backLi.style.visibility = 'visible';
+        });
+
+        item.addEventListener('mouseleave', ()=>{
+            backLi.style.visibility = 'hidden';
+        });
+    });
+</script>

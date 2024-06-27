@@ -1,0 +1,74 @@
+<section class="inicio">
+    <div class="info">
+        <strong class="title">Descubre el mundo ghibli</strong>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
+            necessitatibus maiores sequi esse nemo, nam eius dignissimos
+            vero delectus eum! Veritatis, deserunt. Error, id a.
+        </p>
+    </div>
+
+    <div class="imagen">
+        <img src="../../public/media/castle.png" alt="personajes" />
+    </div>
+</section>
+
+<style> 
+    /* INICIO */
+	.inicio {
+		max-width: 100vw;
+		height: 100vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.inicio .info {
+		max-width: 700px;
+	}
+
+	.info .title {
+		font-size: var(--text-pri);
+		text-transform: uppercase;
+	}
+
+	.info p{
+		font-size: var(--text-sec);
+	}
+
+	.inicio .imagen {
+		width: 800px;
+		height: 600px;
+		display: grid;
+		justify-content: center;
+	}
+
+	.inicio .imagen img {
+		position: relative;
+		top: -10%;
+		left: 100px;
+		width: 700px;
+		height: 700px;
+		transition: transform 2s ease;
+		animation: img_animated linear both;
+		animation-timeline: view();
+		animation-range: entry 20% cover 50%;
+	}
+
+	.inicio .imagen img:hover {
+		cursor: pointer;
+		transform: translate(30px, 10px);
+	} 
+
+	/* @keyframes mov {
+		0%{
+			transform: translate(0, 0);
+		}
+		25%{
+			transform: translate(20px, -10px);
+		}
+		100%{
+			transform: translate(0,0);
+		}
+	} */
+</style>
