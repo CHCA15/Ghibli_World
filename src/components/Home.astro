@@ -1,29 +1,26 @@
-<section class="inicio">
-    <div class="info">
-        <strong class="title">Descubre el mundo ghibli</strong>
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
-            necessitatibus maiores sequi esse nemo, nam eius dignissimos
-            vero delectus eum! Veritatis, deserunt. Error, id a.
-        </p>
-    </div>
+---
+import Section from "../layouts/Section.astro";
+---
 
-    <div class="imagen">
-        <img src="../../public/media/castle.png" alt="personajes" />
-    </div>
-</section>
+<Section>
+	<div class="info">
+		<strong class="title">Descubre el mundo ghibli</strong>
+		<p>
+			Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
+			necessitatibus maiores sequi esse nemo, nam eius dignissimos vero
+			delectus eum! Veritatis, deserunt. Error, id a.
+		</p>
+	</div>
 
-<style> 
-    /* INICIO */
-	.inicio {
-		max-width: 100vw;
-		height: 100vh;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
+	<div class="imagen">
+		<img src="../../public/media/castle.png" alt="personajes" />
+	</div>
+</Section>
 
-	.inicio .info {
+<style>
+	/* INICIO */
+
+	.info {
 		max-width: 700px;
 	}
 
@@ -32,7 +29,7 @@
 		text-transform: uppercase;
 	}
 
-	.info p{
+	.info p {
 		font-size: var(--text-sec);
 	}
 
@@ -58,7 +55,7 @@
 	.inicio .imagen img:hover {
 		cursor: pointer;
 		transform: translate(30px, 10px);
-	} 
+	}
 
 	/* @keyframes mov {
 		0%{
