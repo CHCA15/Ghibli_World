@@ -2,7 +2,7 @@
 import Section from "../layouts/Section.astro";
 ---
 
-<section class="movies">
+<section id="movies" class="movies">
     <h1>Studio Ghibli - Peliculas</h1>
 
     <div id="cardList" class="cardList"></div>
@@ -21,13 +21,14 @@ import Section from "../layouts/Section.astro";
 <style>
     .movies {
         max-width: 100%;
-        height: 100vh;
+        text-align: center;
+        padding: 40px 0;
     }
     .cardList {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         place-items: center;
-        row-gap: 30px;
+        row-gap: 45px;
     }
 
     .card {
@@ -43,39 +44,55 @@ import Section from "../layouts/Section.astro";
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-        padding: 0 10px;
+        padding: 0;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        
+        display: grid;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.900);
+            scale: 1.1;
+        }
+        &:hover .cardInfo {
+            opacity: 1;
+        }
     }
+
+    .movies h1{
+        font-size: 50px;
+        padding: 15px 0;
+    }
+
     .cardInfo {
         position: absolute;
-        bottom: 10px;
-        width: 100%;
-        height: 100px;
-        display: grid;
-        color: black;
+        text-align: center;
+        padding: 0 10px;
+        color: var(--second-color);
+        opacity: 0;
+        transition: all 0.4s ease-in-out;
     }
 
     .cardInfo h1 {
-        font-size: 40px;
-        margin: 0;
+        font-size: 25px;
     }
     .cardInfo h2 {
-        font-size: 15px;
-        margin: 0;
+        font-size: 10px;
     }
     .cardInfo h3 {
-        font-size: 10px;
-        margin: 0;
+        font-size: 15px;
     }
 </style>
 
 <script>
-    
     const template = document.getElementById("template").content;
     const fragment = document.createDocumentFragment();
     const cardList = document.getElementById("cardList");
     const url = `https://ghibliapi.vercel.app/films`;
 
-    document.addEventListener('DOMContentLoaded', ()=>{
+    document.addEventListener("DOMContentLoaded", () => {
         getApiInfo();
     });
 
@@ -83,17 +100,21 @@ import Section from "../layouts/Section.astro";
         try {
             const infoRoot = await fetch(url);
             const infoJson = await infoRoot.json();
-            datos(infoJson)
+            datos(infoJson);
         } catch (error) {
             console.log(error);
         }
     };
 
     const datos = (array) => {
-        array.forEach((element) => {    
-            const {title, image} = element;
-            template.querySelector('h1').textContent = title;
-            template.querySelector('.card').style.setProperty('background-image', `url(${image})`); 
+        array.forEach((element) => {
+            const { title, release_date, description, image } = element;
+            template.querySelector("h1").textContent = title;
+            template.querySelector("h2").textContent = description;
+            template.querySelector("h3").textContent = release_date;
+            template
+                .querySelector(".card")
+                .style.setProperty("background-image", `url(${image})`);
             // card.style.setProperty('background-image', `url(${image})`);
             const clone = template.cloneNode(true);
             fragment.appendChild(clone);
