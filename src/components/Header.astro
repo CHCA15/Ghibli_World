@@ -3,12 +3,12 @@
         <a href="../components/Home.astro">GHIBLI_WORLD</a>
     </div>
     <nav class="navbar">
-        <ul class="items">
-            <li class="item"><a href="#">Inicio</a></li>
-            <li class="item"><a href="#movies">Peliculas</a></li>
-            <li class="item"><a href="#">Personajes</a></li>
-            <li class="item"><a href="#">Especies</a></li>
-            <li class="item"><a href="#">Lugares</a></li>
+        <ul class="items" id="items">
+            <li class="item" id="item" ><a href="#">Inicio</a></li>
+            <li class="item" id="item" ><a href="#movies">Peliculas</a></li>
+            <li class="item" id="item" ><a href="#">Personajes</a></li>
+            <li class="item" id="item" ><a href="#">Especies</a></li>
+            <li class="item" id="item" ><a href="#">Lugares</a></li>
         </ul>
 
         <div class="closeButton">
@@ -30,65 +30,62 @@
 
         <div class="backLi" id="backLi"></div>
     </nav>
-
 </header>
 
 <style>
-
     a {
         text-decoration: none;
         color: var(--second-color);
     }
 
-    header {
+    .header {
         position: fixed;
-        top: 0;    
         left: 0;
-        height: 50px;
-        width: 100vw;
+        right: 0;
         display: flex;
-        justify-content: space-around;
-        backdrop-filter: blur(3px);
+        justify-content: space-between;
+        height: 50px;
         z-index: 10;
         text-transform: uppercase;
-        padding: 20px 0;
-        font-size: var(--text-sec);
-        animation: header_animated auto linear both ;
-        animation-timeline: scroll(root);
-        animation-range: 0 300px; 
+        animation: header_animated auto linear both;
+        font-size: var(--text-pri);        
+        padding: 10px 80px;
+        animation-timeline: scroll(root);        
+        animation-range: 0 200px;
     }
 
     @keyframes header_animated {
-        to{
+        to {
             background-color: rgba(65, 78, 73, 0.151);
             backdrop-filter: blur(8px);
-            font-size: 1.2rem;
-            color: black;
+            color-scheme: ;
         }
     }
 
     .logo {
-        font-size: 2rem;
+        font-size: var(--title);
         font-weight: bold;
         border: 1px solid white;
         box-shadow: 5px 3px 5px white;
-        padding: 0 10px;
     }
 
     .navbar {
         display: flex;
-        justify-content: center;
         align-items: center;
     }
 
     .navbar .items {
         list-style: none;
         display: flex;
-        margin: 0;
-        padding: 0;
+        padding: 0; 
     }
 
-    .navbar .items .item a{
+    /* .navbar .items .item{
+        display: inline-block;
+        padding: 5px 30px;
+    } */
+
+    .navbar .items .item a {
         display: inline-block;
         padding: 5px 30px;
     }
@@ -97,38 +94,40 @@
         color: white;
         width: 40px;
         height: 40px;
+        cursor: pointer;        
         display: none;
     }
 
     .navbar .backLi {
         position: absolute;
-        right: var(--top);
+        right: var(--right);
         left: var(--left);
         width: var(--width);
-        height: var(--height);  
-        z-index: -7;
-        background-color: rgba(22, 145, 73, 0.349);
-        transition: all .2s ease-in-out;
+        height: var(--height);
+        z-index: -10;
+        background-color: rgb(90, 161, 87);
+        transition: all 0.3s ease-out;
         border-radius: 3px;
     }
 </style>
 
 <script>
     const backLi = document.getElementById(`backLi`);
-    const items = document.querySelectorAll(`.items .item a`);
+    const items = document.querySelectorAll('#items #item');
 
     items.forEach((item) => {
         item.addEventListener("mouseenter", (e) => {
-            let {width, height, left, right} = e.target.getBoundingClientRect();
-            backLi.style.setProperty(`--top`,`${right}px`);
+            console.log(e.target.getBoundingClientRect());
+            let { width, height, left, right } = e.target.getBoundingClientRect();
+            backLi.style.setProperty(`--right`, `${right}px`);
             backLi.style.setProperty(`--left`, `${left}px`);
             backLi.style.setProperty(`--width`, `${width}px`);
             backLi.style.setProperty(`--height`, `${height}px`);
-            backLi.style.visibility = 'visible';
-        });
+            backLi.style.visibility = "visible";  
 
-        item.addEventListener('mouseleave', ()=>{
-            backLi.style.visibility = 'hidden';
+            item.addEventListener("mouseleave", () => {
+                    backLi.style.visibility = "hidden";
+                });
         });
     });
 </script>

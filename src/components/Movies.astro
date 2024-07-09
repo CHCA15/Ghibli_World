@@ -1,5 +1,5 @@
 ---
-import Section from "../layouts/Section.astro";
+import Card from '../components/Card.astro'
 ---
 
 <section id="movies" class="movies">
@@ -8,13 +8,14 @@ import Section from "../layouts/Section.astro";
     <div id="cardList" class="cardList"></div>
 
     <template id="template">
-        <div id="card" class="card">
+    <Card title='title' description='description' release_date='release_date'>
+        <!-- <div id="card" class="card">
             <div class="cardInfo">
                 <h1 id="title">title</h1>
                 <h2 id="description">description</h2>
                 <h3 id="release_date">release_date</h3>
             </div>
-        </div>
+        </div> -->
     </template>
 </section>
 
@@ -22,16 +23,22 @@ import Section from "../layouts/Section.astro";
     .movies {
         max-width: 100%;
         text-align: center;
-        padding: 40px 0;
+        padding: 30px 0;
     }
+
+    .movies h1{
+        font-size: 50px;
+        padding: 15px 0;
+    }
+
     .cardList {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         place-items: center;
-        row-gap: 45px;
+        row-gap: 30px;
     }
 
-    .card {
+    /* .card {
         position: relative;
         width: 300px;
         height: 400px;
@@ -47,10 +54,13 @@ import Section from "../layouts/Section.astro";
         padding: 0;
         cursor: pointer;
         transition: all 0.3s ease-in-out;
-        
         display: grid;
         align-items: center;
         justify-content: center;
+
+        animation: img_animated auto ease-out both ;
+		animation-timeline: view(block);
+		animation-range: entry 30% cover 40%;
 
         &:hover {
             background-color: rgba(0, 0, 0, 0.900);
@@ -61,10 +71,17 @@ import Section from "../layouts/Section.astro";
         }
     }
 
-    .movies h1{
-        font-size: 50px;
-        padding: 15px 0;
-    }
+    
+    @keyframes img_animated {
+		from {
+			opacity: 0;
+            translate: 0 100px ;
+		}
+		to {
+			opacity: 1;
+            translate: 0 0;
+		}
+	}
 
     .cardInfo {
         position: absolute;
@@ -83,7 +100,7 @@ import Section from "../layouts/Section.astro";
     }
     .cardInfo h3 {
         font-size: 15px;
-    }
+    } */
 </style>
 
 <script>
