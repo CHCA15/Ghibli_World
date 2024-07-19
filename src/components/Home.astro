@@ -2,7 +2,7 @@
 import Section from "../layouts/Section.astro";
 ---
 
-<section id="inicio" class="inicio">
+<section id="Home" class="inicio">
 	<div class="info">
 		<strong class="title">Descubre el mundo ghibli</strong>
 		<p>
@@ -22,10 +22,16 @@ import Section from "../layouts/Section.astro";
 
 	.inicio{		
 		display: flex;
-		justify-content: center;
+		justify-content: space-around;
 		align-items: center;
 		max-width: 100%;
 		height: 100vh;
+	}
+
+	.info{
+		display: grid;
+		place-items: center;
+		max-width: 600px;
 	}
 
 	.info .title {
@@ -42,12 +48,46 @@ import Section from "../layouts/Section.astro";
 		cursor: pointer;
 		transition: all .6s ease-out;
 		width: 600px;
+		padding-left: 50px;
 	}
 
 	.inicio .imagen img:hover {
 		cursor: pointer;
 		transform: translate(20px, -20px);
 	}
+
+
+	
+	@media(max-width: 980px){
+		.inicio{
+			padding-top: 80px;
+			display: flex;
+			flex-direction: column;
+
+		}
+
+		.inicio .imagen img{
+			max-width: 100%;
+			display: block;
+			padding: 0;
+		}
+	}
+
+
+	/* @media(max-width: 760px){
+		.inicio{
+			padding-top: 80px;
+			display: flex;
+			flex-direction: column;
+
+		}
+
+		img{
+			max-width: 100%;
+			display: block;
+		}
+	} */
+
 /* 
 	@keyframes mov {
 		0%{

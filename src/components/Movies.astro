@@ -1,5 +1,5 @@
 ---
-import Card from '../components/Card.astro'
+import Card from "../components/Card.astro";
 ---
 
 <section id="movies" class="movies">
@@ -8,37 +8,43 @@ import Card from '../components/Card.astro'
     <div id="cardList" class="cardList"></div>
 
     <template id="template">
-    <Card title='title' description='description' release_date='release_date'>
-        <!-- <div id="card" class="card">
+        <Card
+            title="title"
+            description="description"
+            release_date="release_date"
+        >
+            <!-- <div id="card" class="card">
             <div class="cardInfo">
                 <h1 id="title">title</h1>
                 <h2 id="description">description</h2>
                 <h3 id="release_date">release_date</h3>
             </div>
         </div> -->
+        </Card>
     </template>
-</section>
 
-<style>
-    .movies {
-        max-width: 100%;
-        text-align: center;
-        padding: 30px 0;
-    }
+    <style>
+        .movies {
+            align-items: center;
+            text-align: center;
+            padding: 30px 0;            
+        }
 
-    .movies h1{
-        font-size: 50px;
-        padding: 15px 0;
-    }
+        .movies h1 {
+            font-size: var(--title);
+            text-transform: uppercase;
+            padding: 15px 0;
+            margin: 30px 0;
+        }
 
-    .cardList {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        place-items: center;
-        row-gap: 30px;
-    }
+        .cardList {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            place-items: center;
+            gap: 50px 50px;
+        }
 
-    /* .card {
+        /* .card {
         position: relative;
         width: 300px;
         height: 400px;
@@ -101,41 +107,42 @@ import Card from '../components/Card.astro'
     .cardInfo h3 {
         font-size: 15px;
     } */
-</style>
+    </style>
 
-<script>
-    const template = document.getElementById("template").content;
-    const fragment = document.createDocumentFragment();
-    const cardList = document.getElementById("cardList");
-    const url = `https://ghibliapi.vercel.app/films`;
+    <script>
+        const template = document.getElementById("template").content;
+        const fragment = document.createDocumentFragment();
+        const cardList = document.getElementById("cardList");
+        const url = `https://ghibliapi.vercel.app/films`;
 
-    document.addEventListener("DOMContentLoaded", () => {
-        getApiInfo();
-    });
-
-    const getApiInfo = async () => {
-        try {
-            const infoRoot = await fetch(url);
-            const infoJson = await infoRoot.json();
-            datos(infoJson);
-        } catch (error) {
-            console.log(error);
-        }
-    };
-
-    const datos = (array) => {
-        array.forEach((element) => {
-            const { title, release_date, description, image } = element;
-            template.querySelector("h1").textContent = title;
-            template.querySelector("h2").textContent = description;
-            template.querySelector("h3").textContent = release_date;
-            template
-                .querySelector(".card")
-                .style.setProperty("background-image", `url(${image})`);
-            // card.style.setProperty('background-image', `url(${image})`);
-            const clone = template.cloneNode(true);
-            fragment.appendChild(clone);
+        document.addEventListener("DOMContentLoaded", () => {
+            getApiInfo();
         });
-        cardList.appendChild(fragment);
-    };
-</script>
+
+        const getApiInfo = async () => {
+            try {
+                const infoRoot = await fetch(url);
+                const infoJson = await infoRoot.json();
+                datos(infoJson);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        const datos = (array) => {
+            array.forEach((element) => {
+                const { title, release_date, description, image } = element;
+                template.querySelector("h1").textContent = title;
+                template.querySelector("h2").textContent = description;
+                template.querySelector("h3").textContent = release_date;
+                template
+                    .querySelector(".card")
+                    .style.setProperty("background-image", `url(${image})`);
+                // card.style.setProperty('background-image', `url(${image})`);
+                const clone = template.cloneNode(true);
+                fragment.appendChild(clone);
+            });
+            cardList.appendChild(fragment);
+        };
+    </script>
+</section>
