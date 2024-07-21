@@ -11,17 +11,6 @@
             <li class="item" id="item"><a href="#">Lugares</a></li>
         </ul>
 
-        <div class="openButton" id="openButton">
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                ><path
-                    d="M3 4H21V6H3V4ZM7 19H21V21H7V19ZM3 14H21V16H3V14ZM7 9H21V11H7V9Z"
-                ></path></svg
-            >
-        </div>
-
         <div class="closeButton" id="closeButton" >
             <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -35,16 +24,68 @@
 
         <div class="backLi" id="backLi"></div>
     </nav>
+
+    <div class="openButton" id="openButton">
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            ><path
+                d="M3 4H21V6H3V4ZM7 19H21V21H7V19ZM3 14H21V16H3V14ZM7 9H21V11H7V9Z"
+            ></path>
+        </svg>
+    </div>
 </header>
 
 <style>
     @media (max-width: 1080px) {
-        .header .navbar .items{
-            display: none;
+
+        .header .openButton{
+            display: block;
         }
 
-        .navbar .openButton{
+        .navbar{
+            position: absolute;
+            top: -10px;
+            right: -100%;
+            transition: right .5s ease;
+        }
+        .navbar .items{
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            min-height: 100vh;
+            width: 300px;
+            row-gap: 30px;
+            justify-content: center;
+            background-color: var(--main-color);
+        }
+        
+        .navbar .closeButton{
+            position: absolute;
+            top: 17px;
+            right: 17px;
             display: block;
+        } 
+    }
+
+    @media(max-width: 600px){
+
+        .header{
+            margin: 15px;
+        }
+
+        .logo{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 0;
+        }
+        .openButton{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 0;
         }
     }
 
@@ -74,7 +115,7 @@
         to {
             background-color: rgba(65, 78, 73, 0.151);
             backdrop-filter: blur(8px);
-            color-scheme:;
+            /* color-scheme:; */
         }
     }
 
@@ -106,9 +147,6 @@
         padding: 5px 30px;
     }
 
-    .openButton {
-    }
-
     .closeButton,
     .openButton {
         color: white;
@@ -128,6 +166,10 @@
         background-color: rgb(90, 161, 87);
         transition: all 0.3s ease-out;
         border-radius: 3px;
+    }
+
+    .showMenu{
+        right: 0px;
     }
 </style>
 
@@ -155,7 +197,21 @@
     });
 
     //toggle menu
-    const open = document.getElementById('openButton');
+    const open = document.getElementById('openButton'),
+        close = document.getElementById('closeButton'),
+        menu = document.querySelector('.header .navbar');
+
+    if(open){
+        open.addEventListener('click', ()=>{
+            menu.classList.add('showMenu');
+        })
+    }
+    
+    if(close){
+        close.addEventListener('click', ()=>{
+            menu.classList.remove('showMenu');
+        });
+    }
     
 
 </script>
