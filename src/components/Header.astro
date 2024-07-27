@@ -60,33 +60,37 @@
             justify-content: center;
             background-color: var(--main-color);
         }
-        
+
         .navbar .closeButton{
             position: absolute;
             top: 17px;
             right: 17px;
             display: block;
-        } 
+        }
     }
 
     @media(max-width: 600px){
 
         .header{
-            margin: 15px;
+            position: relative;
+            top: 0;
+            margin: 0;
+            padding: 0;
         }
 
-        .logo{
+        .header .logo {
+            position: absolute;
+            left: 5px;
+            scale: .8;
+        }
+
+        .header .openButton{
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            left: 0;
-        }
-        .openButton{
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            right: 0;
-        }
+            right: 15px;
+            z-index: -1;
+        } 
     }
 
     a {
@@ -100,9 +104,9 @@
         right: 0;
         display: flex;
         justify-content: space-between;
-        max-width: 100%
-        min-height: 50px;
-        z-index: 10;
+        max-width: 100%;
+        height: 50px;
+        z-index: 12;
         text-transform: uppercase;
         animation: header_animated auto linear both;
         font-size: var(--text-pri);
@@ -181,9 +185,7 @@
 
     items.forEach((item) => {
         item.addEventListener("mouseenter", (e) => {
-            console.log(e.target.getBoundingClientRect());
-            let { width, height, left, right } =
-                e.target.getBoundingClientRect();
+            let { width, height, left, right } = e.target.getBoundingClientRect();
             backLi.style.setProperty(`--right`, `${right}px`);
             backLi.style.setProperty(`--left`, `${left}px`);
             backLi.style.setProperty(`--width`, `${width}px`);
@@ -206,12 +208,21 @@
             menu.classList.add('showMenu');
         })
     }
-    
+
     if(close){
         close.addEventListener('click', ()=>{
             menu.classList.remove('showMenu');
         });
     }
-    
+
+
+    //close when click link
+    const item = document.querySelectorAll('#item');
+
+    item.forEach((e)=>{
+        e.addEventListener('click', (dato)=>{
+            menu.classList.remove('showMenu');  
+        });
+    });
 
 </script>
